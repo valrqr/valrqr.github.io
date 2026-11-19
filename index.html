@@ -78,6 +78,10 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;margin:0}
 .btn:hover{background:var(--ink);color:#fff}
 .btn.primary:hover{background:#000}
 
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:start}
+.portrait{margin:0;border:2px solid var(--ink);background:#fff;width:300px;margin-top:8px}
+.portrait img{width:100%;aspect-ratio:1;object-fit:cover}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:0}.portrait{width:132px;order:-1;margin:8px 0 0}}
 /* --- Sections --- */
 section{padding:84px 0 0}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:44px}
@@ -174,6 +178,8 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       </nav>
     </div>
 
+    <div class="hero-grid">
+    <div>
     <div class="signs" aria-hidden="true">
       <span class="sign loc"><span>OPS</span></span>
       <span class="sign dir"><span>DATA<span class="arrow">↗</span></span></span>
@@ -195,6 +201,9 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
     <div class="cta">
       <a class="btn primary" href="#projets"><span class="fr">Voir les projets</span><span class="en">See the projects</span></a>
       <a class="btn" href="mailto:val.rouquier@gmail.com"><span class="fr">Me contacter</span><span class="en">Get in touch</span></a>
+    </div>
+    </div>
+    <figure class="portrait"><img src="img/valentin.webp" width="640" height="640" alt="Portrait dessiné de Valentin Rouquier"></figure>
     </div>
   </div>
 </header>
