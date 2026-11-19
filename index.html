@@ -117,6 +117,7 @@ section{padding:84px 0 0}
 
 /* Parcours (séquence réelle : chronologie) */
 .path{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px}
+.path .intro .cvlink{margin-top:28px}
 .path .intro p{font-size:1.1rem;color:#26333E;max-width:44ch}
 .timeline{list-style:none;margin:0;padding:0;position:relative}
 .timeline::before{content:"";position:absolute;left:5.6em;top:8px;bottom:8px;width:0;border-left:3px dashed var(--sign)}
@@ -124,7 +125,7 @@ section{padding:84px 0 0}
 .timeline li::after{content:"";position:absolute;left:calc(5.6em - 5px);top:7px;width:13px;height:13px;background:#000;border:2px solid var(--sign)}
 .timeline time{font:600 .95rem/1.5 var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
 .timeline b{display:block;font-weight:600}
-.timeline div > span{color:var(--muted);font-size:.95rem}
+.timeline div > span{display:block;color:var(--muted);font-size:.95rem;line-height:1.45;margin-top:4px}
 .timeline .now::after{background:var(--sign);border-color:#000}
 
 /* Pied de page */
@@ -304,13 +305,15 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       <div class="intro">
         <p><span class="fr">Chef avion, puis coordonnateur des opérations piste, puis agent d'opérations portuaires : j'ai passé douze ans à faire tourner des opérations où chaque minute et chaque décision comptent. J'y ai construit mes premiers outils de données, en Excel et VBA.</span><span class="en">Ramp agent and turnaround coordinator, then airside operations coordinator, then port operations agent: I spent twelve years running operations where every minute and every decision counts. That's where I built my first data tools, in Excel and VBA.</span></p>
         <p><span class="fr">Ma formation de Data Analyst m'a donné les outils pour aller plus loin. Je cherche aujourd'hui un poste où l'on a besoin des deux : comprendre l'opération et faire parler ses données.</span><span class="en">My data analyst training gave me the tools to go further. I'm now looking for a role that needs both: understanding the operation and making its data speak.</span></p>
+        <p class="cvlink"><a class="btn fr" href="cv/CV-Valentin-Rouquier-FR.pdf" download><span>Télécharger le CV (PDF)</span></a><a class="btn en" href="cv/Resume-Valentin-Rouquier-EN.pdf" download><span>Download my resume (PDF)</span></a></p>
       </div>
       <ol class="timeline" reversed>
         <li class="now"><time>2026</time><div><b><span class="fr">Certification Microsoft PL-300 et formation Data Analyst</span><span class="en">Microsoft PL-300 certification and data analyst training</span></b><span>La Capsule · <a href="https://learn.microsoft.com/api/credentials/share/en-gb/ValentinRouquier-4848/92EA7B45D7254074?sharingId=6C76CA7A9C38FB35"><span class="fr">vérifier la certification</span><span class="en">verify the certification</span></a></span></div></li>
-        <li><time>2025-26</time><div><b><span class="fr">Agent d'opérations portuaires</span><span class="en">Port operations agent</span></b><span class="fr">Intercruises, Nice · plus de 200 escales de croisière par saison</span><span class="en">Intercruises, Nice · 200+ cruise calls per season</span></div></li>
-        <li><time>2020-25</time><div><b><span class="fr">Coordonnateur des opérations piste</span><span class="en">Airside operations coordinator</span></b><span class="fr">Aéroports de la Côte d'Azur · sécurité airside, événements sécurité, reporting</span><span class="en">Aéroports de la Côte d'Azur · airside safety, safety events, reporting</span></div></li>
-        <li><time>2012-19</time><div><b><span class="fr">Agent de trafic et chef avion</span><span class="en">Traffic agent and turnaround coordinator</span></b><span class="fr">Aviapartner, Nice · escale, chargement, marchandises dangereuses</span><span class="en">Aviapartner, Nice · turnaround, loading, dangerous goods</span></div></li>
+        <li><time>2025-26</time><div><b><span class="fr">Agent d'opérations portuaires</span><span class="en">Port operations agent</span></b><span class="fr">Intercruises, Nice · plus de 200 escales de croisière par saison, et un outil Excel/VBA d'aide à la négociation des tarifs autocaristes</span><span class="en">Intercruises, Nice · 200+ cruise calls per season, and an Excel/VBA tool to support coach-rate negotiations</span></div></li>
+        <li><time>2020-25</time><div><b><span class="fr">Coordonnateur des opérations piste</span><span class="en">Airside operations coordinator</span></b><span class="fr">Aéroports de la Côte d'Azur · conception d'Indicateurs.xlsm, l'outil de reporting airside de l'équipe ; formateur et examinateur du permis de circulation airside, plus de 30 agents par an</span><span class="en">Aéroports de la Côte d'Azur · built Indicateurs.xlsm, the team's airside reporting tool; trainer and examiner for the airside driving permit, 30+ staff a year</span></div></li>
+        <li><time>2012-19</time><div><b><span class="fr">Agent de trafic et chef avion</span><span class="en">Traffic agent and turnaround coordinator</span></b><span class="fr">Aviapartner, Nice · coordination de l'escale, loadsheet et plan de chargement, marchandises dangereuses (IATA DGR)</span><span class="en">Aviapartner, Nice · turnaround coordination, loadsheet and load planning, dangerous goods (IATA DGR)</span></div></li>
         <li><time>2012</time><div><b><span class="fr">Technicien aéronautique d'exploitation</span><span class="en">Aeronautical operations technician</span></b><span>ENAC</span></div></li>
+        <li><time>2011</time><div><b><span class="fr">DUT Gestion logistique et transport</span><span class="en">Two-year degree in logistics and transport management</span></b><span>IUT Aix-Marseille</span></div></li>
       </ol>
     </div>
   </div>
