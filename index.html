@@ -66,8 +66,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;margin:0}
 /* --- Hero --- */
 .hero{background:var(--apron);border-bottom:1px solid var(--rule)}
 .hero .wrap{padding-top:64px;padding-bottom:72px}
-.hero .signs{display:flex;flex-wrap:wrap;gap:4px;margin:28px 0 44px}
-.hero .signs .sign{font-size:clamp(1.5rem,4vw,2.6rem)}
+.hero .logo{width:clamp(240px,38vw,460px);height:auto;margin:28px 0 44px}
 .hero h1{font-size:clamp(2.5rem,6vw,4.6rem);letter-spacing:-.01em;max-width:19ch;text-wrap:balance}
 .hero .lede{font-size:clamp(1.1rem,1.8vw,1.3rem);max-width:58ch;margin:28px 0 0;color:#26333E}
 .facts{display:flex;flex-wrap:wrap;gap:12px 32px;margin:36px 0 0;padding:0;list-style:none;font-size:.97rem;color:var(--muted)}
@@ -156,8 +155,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
   .nums li{grid-template-columns:6em 1fr}
 }
 @media (prefers-reduced-motion:no-preference){
-  .hero .signs .sign{animation:lit .5s ease-out both}
-  .hero .signs .sign:nth-child(2){animation-delay:.25s}
+  .hero .logo{animation:lit .6s ease-out both}
   @keyframes lit{from{opacity:0;filter:brightness(.4)}to{opacity:1;filter:none}}
 }
 @media print{.top nav,.lang,.cta,footer .contact{display:none}section{padding-top:32px}}
@@ -181,10 +179,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
 
     <div class="hero-grid">
     <div>
-    <div class="signs" aria-hidden="true">
-      <span class="sign loc"><span>OPS</span></span>
-      <span class="sign dir"><span>DATA<span class="arrow">↗</span></span></span>
-    </div>
+    <img class="logo" src="img/opsdata.svg" width="902" height="213" alt="OPS vers DATA">
 
     <h1>
       <span class="fr">Douze ans sur les pistes et les quais. Aujourd'hui, je mesure ce que j'y ai vu.</span>
