@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valentin Rouquier · Data Analyst, opérations aériennes et maritimes</title>
+<meta name="description" content="Douze ans d'opérations aéroportuaires et portuaires, puis la data : projets publiés sur la flotte CMA CGM (EU MRV), les paliers en descente à Nice (ADS-B) et les outils de reporting airside. Certifié Power BI (PL-300).">
+<meta property="og:title" content="Valentin Rouquier · Data Analyst, opérations aériennes et maritimes">
+<meta property="og:description" content="Projets data publiés : flotte CMA CGM (EU MRV), paliers en descente à Nice (ADS-B), reporting airside. Certifié Power BI (PL-300).">
+<meta property="og:image" content="https://valrqr.github.io/img/og.png">
+<meta property="og:url" content="https://valrqr.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='700' font-size='18' text-anchor='middle' fill='%23F7C600'%3EVR%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Barlow Semi Condensed";src:url(fonts/barlow-semi-condensed-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow Semi Condensed";src:url(fonts/barlow-semi-condensed-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --apron:#EEF0EE;      /* béton de l'aire de trafic */
+  --paper:#FFFFFF;
+  --ink:#16222D;        /* tarmac de nuit */
+  --muted:#56626C;
+  --rule:#D3D8D6;
+  --sign:#F7C600;       /* jaune des panneaux airside */
+  --sea:#1C5A86;        /* liens : bleu marine */
+  --display:"Barlow Semi Condensed","Barlow",system-ui,sans-serif;
+  --text:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:not([data-lang="en"]) .en{display:none!important}
+html[data-lang="en"] .fr{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.55 var(--text);font-feature-settings:"kern","liga";text-rendering:optimizeLegibility}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--sea);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--sign);outline-offset:3px;box-shadow:0 0 0 6px #000}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+p{margin:0 0 1em}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;margin:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#000;color:var(--sign);padding:8px 12px;z-index:9}
+
+/* --- Panneaux airside : location sign (noir/jaune) et direction sign (jaune/noir) --- */
+.sign{display:inline-flex;align-items:stretch;font:700 1rem/1 var(--display);letter-spacing:.02em;vertical-align:middle}
+.sign > span{display:inline-flex;align-items:center;padding:.38em .6em .34em}
+.loc{background:#000;color:var(--sign);box-shadow:inset 0 0 0 2px var(--sign),0 0 0 2px #000}
+.dir{background:var(--sign);color:#000;box-shadow:0 0 0 2px #000}
+.sign .arrow{font-family:var(--text);font-weight:600;margin-left:.35em}
+
+/* --- En-tête --- */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}
+.top .who{font:700 1.05rem/1 var(--display);color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.top nav{display:flex;align-items:center;gap:20px;font-size:.95rem}
+.top nav a{color:var(--ink);text-decoration:none}
+.top nav a:hover{text-decoration:underline}
+.lang{font:600 .85rem/1 var(--display);background:none;border:2px solid var(--ink);color:var(--ink);padding:6px 9px;cursor:pointer;border-radius:2px}
+.lang:hover{background:var(--ink);color:#fff}
+
+/* --- Hero --- */
+.hero{background:var(--apron);border-bottom:1px solid var(--rule)}
+.hero .wrap{padding-top:64px;padding-bottom:72px}
+.hero .signs{display:flex;flex-wrap:wrap;gap:4px;margin:28px 0 44px}
+.hero .signs .sign{font-size:clamp(1.5rem,4vw,2.6rem)}
+.hero h1{font-size:clamp(2.5rem,6vw,4.6rem);letter-spacing:-.01em;max-width:19ch;text-wrap:balance}
+.hero .lede{font-size:clamp(1.1rem,1.8vw,1.3rem);max-width:58ch;margin:28px 0 0;color:#26333E}
+.facts{display:flex;flex-wrap:wrap;gap:12px 32px;margin:36px 0 0;padding:0;list-style:none;font-size:.97rem;color:var(--muted)}
+.facts strong{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{display:inline-block;font:600 1rem/1 var(--display);padding:13px 18px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);border-radius:2px}
+.btn.primary{background:var(--ink);color:#fff}
+.btn:hover{background:var(--ink);color:#fff}
+.btn.primary:hover{background:#000}
+
+/* --- Sections --- */
+section{padding:84px 0 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem)}
+.sec-head p{margin:0;color:var(--muted);font-size:.95rem;max-width:46ch;text-align:right}
+
+/* Projets phares */
+.feature{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start;margin-bottom:88px}
+.feature.flip{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.feature.flip .shot{order:2}
+.shot{margin:0}
+.shot img{border:1px solid var(--rule)}
+.shot figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
+.feature h3{font-size:clamp(1.7rem,3vw,2.3rem);margin:18px 0 10px}
+.q{font-size:1.15rem;color:#26333E;margin-bottom:22px}
+.nums{list-style:none;margin:0 0 22px;padding:0;border-top:1px solid var(--rule)}
+.nums li{display:grid;grid-template-columns:7.2em 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:.98rem;line-height:1.4}
+.nums b{font:700 1.35rem/1.1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.stack{font-size:.92rem;color:var(--muted);margin-bottom:18px}
+.stack strong{color:var(--ink);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:12px 22px;font-weight:600}
+.note{font-size:.85rem;color:var(--muted);margin-top:16px}
+
+/* Autres projets */
+.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px}
+.more .shot + .sign,.more .textonly + .sign{margin-top:22px}
+.more article h3{font-size:1.45rem;margin:14px 0 8px}
+.more article p{font-size:.98rem}
+.more .shot img{aspect-ratio:4/3;object-fit:cover;object-position:top left;width:100%}
+.more .textonly{background:var(--apron);aspect-ratio:4/3;display:flex;align-items:flex-end;padding:22px;border:1px solid var(--rule)}
+.more .textonly span{font:700 2.6rem/1 var(--display);color:var(--ink)}
+.more .textonly small{display:block;font:500 .95rem/1.3 var(--text);color:var(--muted);margin-top:8px}
+
+/* Parcours (séquence réelle : chronologie) */
+.path{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px}
+.path .intro p{font-size:1.1rem;color:#26333E;max-width:44ch}
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:5.6em;top:8px;bottom:8px;width:0;border-left:3px dashed var(--sign)}
+.timeline li{display:grid;grid-template-columns:5.6em 1fr;gap:26px;padding:0 0 26px;position:relative}
+.timeline li::after{content:"";position:absolute;left:calc(5.6em - 5px);top:7px;width:13px;height:13px;background:#000;border:2px solid var(--sign)}
+.timeline time{font:600 .95rem/1.5 var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
+.timeline b{display:block;font-weight:600}
+.timeline div > span{color:var(--muted);font-size:.95rem}
+.timeline .now::after{background:var(--sign);border-color:#000}
+
+/* Pied de page */
+footer{margin-top:96px;background:var(--ink);color:#DDE3E1}
+footer .wrap{padding-top:56px;padding-bottom:56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end}
+footer h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:12px}
+footer p{margin:0;max-width:52ch}
+footer a{color:var(--sign)}
+footer .contact{display:flex;flex-wrap:wrap;gap:12px}
+footer .btn{border-color:var(--sign);color:var(--sign)}
+footer .btn:hover{background:var(--sign);color:#000}
+footer .btn.primary{background:var(--sign);color:#000}
+footer .btn.primary:hover{background:#fff;border-color:#fff}
+footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;padding-bottom:28px}
+
+@media (max-width:900px){
+  .feature,.feature.flip,.path{grid-template-columns:1fr;gap:28px}
+  .feature.flip .shot{order:0}
+  .more{grid-template-columns:1fr;gap:56px}
+  .sec-head{flex-direction:column;align-items:flex-start}
+  .sec-head p{text-align:left}
+  .top nav .hide-s{display:none}
+}
+@media (max-width:520px){
+  body{font-size:17px}
+  .wrap{padding:0 20px}
+  .hero .wrap{padding-top:40px;padding-bottom:52px}
+  .nums li{grid-template-columns:6em 1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero .signs .sign{animation:lit .5s ease-out both}
+  .hero .signs .sign:nth-child(2){animation-delay:.25s}
+  @keyframes lit{from{opacity:0;filter:brightness(.4)}to{opacity:1;filter:none}}
+}
+@media print{.top nav,.lang,.cta,footer .contact{display:none}section{padding-top:32px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#projets"><span class="fr">Aller aux projets</span><span class="en">Skip to projects</span></a>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top">
+      <a class="who" href="#">Valentin Rouquier</a>
+      <nav aria-label="Liens">
+        <a class="hide-s" href="#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+        <a class="hide-s" href="#parcours"><span class="fr">Parcours</span><span class="en">Background</span></a>
+        <a href="https://www.linkedin.com/in/valentin-rouquier-286833347" rel="me">LinkedIn</a>
+        <a href="https://github.com/valrqr" rel="me">GitHub</a>
+        <button class="lang" type="button" id="lang" aria-label="Switch to English">EN</button>
+      </nav>
+    </div>
+
+    <div class="signs" aria-hidden="true">
+      <span class="sign loc"><span>OPS</span></span>
+      <span class="sign dir"><span>DATA<span class="arrow">↗</span></span></span>
+    </div>
+
+    <h1>
+      <span class="fr">Douze ans sur les pistes et les quais. Aujourd'hui, je mesure ce que j'y ai vu.</span>
+      <span class="en">Twelve years on runways and quays. Now I measure what I saw there.</span>
+    </h1>
+    <p class="lede">
+      <span class="fr">Je suis Valentin Rouquier, Data Analyst <a href="https://learn.microsoft.com/api/credentials/share/en-gb/ValentinRouquier-4848/92EA7B45D7254074?sharingId=6C76CA7A9C38FB35">certifié Power BI (PL-300)</a>. Je construis des chaînes de données complètes, de la collecte au tableau de bord, sur des sujets que je connais du terrain : l'aérien, le maritime et les opérations.</span>
+      <span class="en">I'm Valentin Rouquier, a <a href="https://learn.microsoft.com/api/credentials/share/en-gb/ValentinRouquier-4848/92EA7B45D7254074?sharingId=6C76CA7A9C38FB35">Power BI certified (PL-300)</a> data analyst. I build end-to-end data pipelines, from collection to dashboard, on subjects I know first-hand: aviation, shipping and operations.</span>
+    </p>
+    <ul class="facts">
+      <li><span class="fr"><strong>12 ans</strong> d'opérations aéroportuaires et portuaires</span><span class="en"><strong>12 years</strong> in airport and port operations</span></li>
+      <li><strong>BigQuery, dbt, Power BI, Python</strong></li>
+      <li><span class="fr">Ouvert à : <strong>France, Genève, Luxembourg, télétravail</strong></span><span class="en">Open to: <strong>France, Geneva, Luxembourg, remote</strong></span></li>
+    </ul>
+    <div class="cta">
+      <a class="btn primary" href="#projets"><span class="fr">Voir les projets</span><span class="en">See the projects</span></a>
+      <a class="btn" href="mailto:val.rouquier@gmail.com"><span class="fr">Me contacter</span><span class="en">Get in touch</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="projets" aria-labelledby="h-projets">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-projets"><span class="fr">Projets publiés</span><span class="en">Published projects</span></h2>
+      <p><span class="fr">Données publiques, code ouvert, méthode et limites documentées dans chaque dépôt.</span><span class="en">Public data, open code, with method and limits documented in each repository.</span></p>
+    </div>
+
+    <!-- SILLAGE -->
+    <article class="feature" aria-labelledby="h-sillage">
+      <figure class="shot">
+        <a href="https://github.com/valrqr/sillage"><img src="img/sillage-dashboard.webp" width="1800" height="1016" alt="Tableau de bord Power BI SILLAGE : 197 navires, 4,60 Mt de CO2, vitesse médiane 12,4 nœuds, nuage de points vitesse et carburant par mille, liste des 4 navires à investiguer"></a>
+        <figcaption><span class="fr">Tableau de bord Power BI (Microsoft Fabric), données EU MRV 2025.</span><span class="en">Power BI dashboard (Microsoft Fabric), EU MRV 2025 data.</span></figcaption>
+      </figure>
+      <div>
+        <span class="sign loc"><span><span class="fr">MARITIME · EU MRV</span><span class="en">SHIPPING · EU MRV</span></span></span>
+        <h3 id="h-sillage">SILLAGE</h3>
+        <p class="q">
+          <span class="fr">Que disent les déclarations d'émissions européennes de la flotte de porte-conteneurs CMA CGM ?</span>
+          <span class="en">What do EU emissions reports reveal about the CMA CGM container fleet?</span>
+        </p>
+        <ul class="nums">
+          <li><b>197</b><span class="fr">navires gérés par le groupe en 2025, comparés à plus de 2 100 porte-conteneurs</span><span class="en">group-managed ships in 2025, benchmarked against more than 2,100 container ships</span></li>
+          <li><b>−1,2 <span class="fr">nd</span><span class="en">kn</span></b><span class="fr">de vitesse médiane en un an sur 148 navires suivis, pour −2,6 % de carburant par mille</span><span class="en">median speed in one year across 148 tracked ships, with 2.6% less fuel per nautical mile</span></li>
+          <li><b>4</b><span class="fr">navires consomment au moins 15 % de plus que leurs sister-ships : à investiguer</span><span class="en">ships burn at least 15% more than their sister ships: flagged for review</span></li>
+        </ul>
+        <p class="stack"><strong>Python, BigQuery, dbt, Power BI</strong> <span class="fr">(DAX, Microsoft Fabric), 11 tests dbt</span><span class="en">(DAX, Microsoft Fabric), 11 dbt tests</span></p>
+        <div class="links"><a href="https://github.com/valrqr/sillage"><span class="fr">Lire l'analyse et le code</span><span class="en">Read the analysis and code</span></a></div>
+        <p class="note"><span class="fr">Analyse indépendante de données publiques, sans lien avec CMA CGM.</span><span class="en">Independent analysis of public data, not affiliated with CMA CGM.</span></p>
+      </div>
+    </article>
+
+    <!-- MAINTAIN -->
+    <article class="feature flip" aria-labelledby="h-maintain">
+      <figure class="shot">
+        <a href="https://github.com/valrqr/maintain-4000"><img src="img/maintain-carte.webp" width="1100" height="1050" loading="lazy" alt="Carte des trajectoires d'arrivée à Nice Côte d'Azur, portions en palier surlignées en bleu, concentrées au-dessus de la mer au sud-ouest de l'aéroport"></a>
+        <figcaption><span class="fr">319 arrivées en piste 04 et leurs paliers, positions ADS-B OpenSky.</span><span class="en">319 runway 04 arrivals and their level-offs, OpenSky ADS-B positions.</span></figcaption>
+      </figure>
+      <div>
+        <span class="sign loc"><span><span class="fr">AÉRIEN · LFMN</span><span class="en">AVIATION · LFMN</span></span></span>
+        <h3 id="h-maintain">MAINTAIN</h3>
+        <p class="q">
+          <span class="fr">Combien de carburant coûtent les paliers imposés pendant la descente vers Nice Côte d'Azur ?</span>
+          <span class="en">How much fuel do level-offs cost during the descent into Nice Côte d'Azur?</span>
+        </p>
+        <ul class="nums">
+          <li><b>427</b><span class="fr">paliers détectés sur 385 arrivées reconstruites à partir de données ADS-B</span><span class="en">level-offs detected across 385 arrivals rebuilt from ADS-B data</span></li>
+          <li><b>35 %</b><span class="fr">des paliers concentrent 80 % du carburant en jeu</span><span class="en">of level-offs account for 80% of the fuel at stake</span></li>
+          <li><b>33 → 76 %</b><span class="fr">des arrivées font un palier quand le trafic passe de 1-3 à 4 arrivées par heure ou plus</span><span class="en">of arrivals level off as traffic goes from 1-3 to 4 or more arrivals per hour</span></li>
+        </ul>
+        <p class="stack"><strong>Python, API OpenSky, OpenAP, BigQuery, dbt</strong> <span class="fr">et tests sur trajectoires synthétiques</span><span class="en">with tests on synthetic trajectories</span></p>
+        <div class="links"><a href="https://github.com/valrqr/maintain-4000"><span class="fr">Lire l'analyse et le code</span><span class="en">Read the analysis and code</span></a></div>
+        <p class="note"><span class="fr">J'ai travaillé aux opérations piste de cet aéroport : ce que j'ai vu depuis le tarmac, je le mesure ici dans la donnée.</span><span class="en">I worked in airside operations at this airport: what I saw from the apron, I measure here in the data.</span></p>
+      </div>
+    </article>
+
+    <div class="more">
+      <article aria-labelledby="h-mitoyen">
+        <figure class="shot"><a href="https://github.com/valrqr/mitoyen"><img src="img/mitoyen-plan-travaux.webp" width="900" height="1012" loading="lazy" alt="Plan de travaux généré par Mitoyen : projection du fonds de travaux sur 10 ans, cotisation lissée et montants à appeler par année"></a></figure>
+        <span class="sign loc"><span><span class="fr">COPROPRIÉTÉ</span><span class="en">CONDOMINIUM</span></span></span>
+        <h3 id="h-mitoyen">Mitoyen</h3>
+        <p><span class="fr">Un assistant open source pour les syndics bénévoles : appels de fonds au centime, plan de travaux sur 10 ans, rapprochement bancaire et relances des impayés. L'agent prépare, le syndic valide et signe.</span><span class="en">An open-source assistant for volunteer condominium managers: service-charge calls to the cent, a 10-year works plan, bank reconciliation and arrears reminders. The agent prepares, the manager approves and signs.</span></p>
+        <p class="stack"><strong>Python, FastAPI, n8n, Docker</strong></p>
+        <div class="links"><a href="https://github.com/valrqr/mitoyen"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
+      </article>
+
+      <article aria-labelledby="h-indic">
+        <figure class="shot"><a href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><img src="img/indicateurs-saisie.webp" width="592" height="419" loading="lazy" alt="Formulaire de saisie journalière d'Indicateurs.xlsm : inspections, SGS, convoyages, FOD, tractages, facturations"></a></figure>
+        <span class="sign loc"><span>AIRSIDE · EXCEL</span></span>
+        <h3 id="h-indic">Indicateurs.xlsm</h3>
+        <p><span class="fr">L'outil que j'ai conçu aux Aéroports de la Côte d'Azur pour l'équipe des opérations piste : saisie quotidienne contrôlée, puis reporting automatique mensuel, saisonnier IATA et annuel. 25 formulaires, environ 10 600 lignes de VBA.</span><span class="en">The tool I built at Aéroports de la Côte d'Azur for the airside operations team: validated daily data entry, then automated monthly, IATA-season and annual reporting. 25 forms, about 10,600 lines of VBA.</span></p>
+        <p class="stack"><strong>Excel, VBA, PowerPoint</strong></p>
+        <div class="links"><a href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
+      </article>
+
+      <article aria-labelledby="h-diab">
+        <div class="textonly" aria-hidden="true"><div><span>25 %</span><small class="fr">de réadmission dans le groupe à risque, contre 11 % en moyenne</small><small class="en">readmission rate in the high-risk group, versus 11% on average</small></div></div>
+        <span class="sign loc"><span><span class="fr">SANTÉ · FORMATION</span><span class="en">HEALTHCARE · TRAINING</span></span></span>
+        <h3 id="h-diab"><span class="fr">Réadmissions de patients diabétiques</span><span class="en">Diabetic patient readmissions</span></h3>
+        <p><span class="fr">Projet de fin de formation en binôme : pipeline ELT sur environ 100 000 hospitalisations, segmentation et classification (XGBoost), puis un tableau de bord Power BI pour un public non technique.</span><span class="en">Final training project, in pairs: an ELT pipeline over about 100,000 hospital stays, segmentation and classification (XGBoost), then a Power BI dashboard for a non-technical audience.</span></p>
+        <p class="stack"><strong>Airbyte, Airflow, Docker, BigQuery, dbt, Python, Power BI</strong></p>
+        <div class="links"><a href="https://github.com/valrqr/data-portfolio/tree/main/Data%20-%20Portfolio%20formation/Projet%20Fin%20de%20Formation"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="parcours" aria-labelledby="h-parcours">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-parcours"><span class="fr">Du terrain à la donnée</span><span class="en">From the field to the data</span></h2>
+    </div>
+    <div class="path">
+      <div class="intro">
+        <p><span class="fr">Chef avion, puis coordonnateur des opérations piste, puis agent d'opérations portuaires : j'ai passé douze ans à faire tourner des opérations où chaque minute et chaque décision comptent. J'y ai construit mes premiers outils de données, en Excel et VBA.</span><span class="en">Ramp agent and turnaround coordinator, then airside operations coordinator, then port operations agent: I spent twelve years running operations where every minute and every decision counts. That's where I built my first data tools, in Excel and VBA.</span></p>
+        <p><span class="fr">Ma formation de Data Analyst m'a donné les outils pour aller plus loin. Je cherche aujourd'hui un poste où l'on a besoin des deux : comprendre l'opération et faire parler ses données.</span><span class="en">My data analyst training gave me the tools to go further. I'm now looking for a role that needs both: understanding the operation and making its data speak.</span></p>
+      </div>
+      <ol class="timeline" reversed>
+        <li class="now"><time>2026</time><div><b><span class="fr">Certification Microsoft PL-300 et formation Data Analyst</span><span class="en">Microsoft PL-300 certification and data analyst training</span></b><span>La Capsule · <a href="https://learn.microsoft.com/api/credentials/share/en-gb/ValentinRouquier-4848/92EA7B45D7254074?sharingId=6C76CA7A9C38FB35"><span class="fr">vérifier la certification</span><span class="en">verify the certification</span></a></span></div></li>
+        <li><time>2025-26</time><div><b><span class="fr">Agent d'opérations portuaires</span><span class="en">Port operations agent</span></b><span class="fr">Intercruises, Nice · plus de 200 escales de croisière par saison</span><span class="en">Intercruises, Nice · 200+ cruise calls per season</span></div></li>
+        <li><time>2020-25</time><div><b><span class="fr">Coordonnateur des opérations piste</span><span class="en">Airside operations coordinator</span></b><span class="fr">Aéroports de la Côte d'Azur · sécurité airside, événements sécurité, reporting</span><span class="en">Aéroports de la Côte d'Azur · airside safety, safety events, reporting</span></div></li>
+        <li><time>2012-19</time><div><b><span class="fr">Agent de trafic et chef avion</span><span class="en">Traffic agent and turnaround coordinator</span></b><span class="fr">Aviapartner, Nice · escale, chargement, marchandises dangereuses</span><span class="en">Aviapartner, Nice · turnaround, loading, dangerous goods</span></div></li>
+        <li><time>2012</time><div><b><span class="fr">Technicien aéronautique d'exploitation</span><span class="en">Aeronautical operations technician</span></b><span>ENAC</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h2><span class="fr">Parlons-en</span><span class="en">Let's talk</span></h2>
+      <p><span class="fr">Un poste en opérations, en performance ou en data dans le transport ? Écrivez-moi, je réponds vite.</span><span class="en">An operations, performance or data role in transport? Write to me, I reply quickly.</span></p>
+    </div>
+    <div class="contact">
+      <a class="btn primary" href="mailto:val.rouquier@gmail.com">val.rouquier@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/valentin-rouquier-286833347">LinkedIn</a>
+      <a class="btn" href="https://github.com/valrqr">GitHub</a>
+    </div>
+  </div>
+  <div class="wrap small">© 2026 Valentin Rouquier · <span class="fr">Police Barlow (licence SIL OFL), hébergée sur ce site</span><span class="en">Barlow typeface (SIL OFL), self-hosted</span></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('lang');
+  function set(l){
+    root.setAttribute('data-lang',l); root.lang=l;
+    btn.textContent = l==='en' ? 'FR' : 'EN';
+    btn.setAttribute('aria-label', l==='en' ? 'Passer en français' : 'Switch to English');
+    try{ localStorage.setItem('lang',l); }catch(e){}
+  }
+  var q=new URLSearchParams(location.search).get('lang'), saved=null;
+  try{ saved=localStorage.getItem('lang'); }catch(e){}
+  var nav=(navigator.language||'fr').toLowerCase().slice(0,2);
+  set(q==='en'||q==='fr' ? q : (saved || (nav==='fr' ? 'fr' : 'en')));
+  btn.addEventListener('click',function(){ set(root.getAttribute('data-lang')==='en'?'fr':'en'); });
+})();
+</script>
+</body>
+</html>
