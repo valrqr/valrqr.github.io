@@ -11,154 +11,120 @@
 <meta property="og:url" content="https://valrqr.github.io/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='700' font-size='18' text-anchor='middle' fill='%23F7C600'%3EVR%3C/text%3E%3C/svg%3E">
-<link rel="preload" href="fonts/barlow-semi-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="img/icone.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/nunito-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Barlow";src:url(fonts/barlow-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Barlow Semi Condensed";src:url(fonts/barlow-semi-condensed-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Barlow Semi Condensed";src:url(fonts/barlow-semi-condensed-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
-
+@font-face{font-family:"Nunito";src:url(fonts/nunito-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Nunito";src:url(fonts/nunito-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Nunito";src:url(fonts/nunito-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Nunito";src:url(fonts/nunito-latin-800-normal.woff2) format("woff2");font-weight:800;font-display:swap}
 :root{
-  --apron:#EEF0EE;      /* béton de l'aire de trafic */
-  --paper:#FFFFFF;
-  --ink:#16222D;        /* tarmac de nuit */
-  --muted:#56626C;
-  --rule:#D3D8D6;
-  --sign:#F7C600;       /* jaune des panneaux airside */
-  --sea:#1C5A86;        /* liens : bleu marine */
-  --display:"Barlow Semi Condensed","Barlow",system-ui,sans-serif;
-  --text:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --wrap:1120px;
+  --ink:#1e1e1e; --muted:#5c5f62; --paper:#fff; --dots:#d9dbde;
+  --orange:#f08c00; --yellow:#ffd43b; --cream:#fff9db;
+  --text:"Nunito",system-ui,sans-serif; --wrap:1120px;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
 html:not([data-lang="en"]) .en{display:none!important}
 html[data-lang="en"] .fr{display:none!important}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.55 var(--text);font-feature-settings:"kern","liga";text-rendering:optimizeLegibility}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17.5px/1.6 var(--text)}
 img{max-width:100%;height:auto;display:block}
-a{color:var(--sea);text-decoration-thickness:1px;text-underline-offset:3px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--sign);outline-offset:3px;box-shadow:0 0 0 6px #000}
+a{color:var(--ink);text-decoration-color:var(--orange);text-decoration-thickness:2px;text-underline-offset:4px}
+a:hover{color:var(--orange)}
+:focus-visible{outline:2px dashed var(--orange);outline-offset:4px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
 p{margin:0 0 1em}
-h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.08;margin:0}
-.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#000;color:var(--sign);padding:8px 12px;z-index:9}
+h1,h2,h3{font-family:var(--text);font-weight:800;line-height:1.12;letter-spacing:-.015em;margin:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:9}
 
-/* --- Panneaux airside : location sign (noir/jaune) et direction sign (jaune/noir) --- */
-.sign{display:inline-flex;align-items:stretch;font:700 1rem/1 var(--display);letter-spacing:.02em;vertical-align:middle}
-.sign > span{display:inline-flex;align-items:center;padding:.38em .6em .34em}
-.loc{background:#000;color:var(--sign);box-shadow:inset 0 0 0 2px var(--sign),0 0 0 2px #000}
-.dir{background:var(--sign);color:#000;box-shadow:0 0 0 2px #000}
-.sign .arrow{font-family:var(--text);font-weight:600;margin-left:.35em}
+/* Calques rough.js : le dessin se place derrière le contenu */
+[data-rough]{position:relative;isolation:isolate}
+.rough{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);pointer-events:none;z-index:-1;overflow:visible}
+.rough.front{z-index:1}
 
-/* --- En-tête --- */
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}
-.top .who{font:700 1.05rem/1 var(--display);color:var(--ink);text-decoration:none;letter-spacing:.01em}
-.top nav{display:flex;align-items:center;gap:20px;font-size:.95rem}
-.top nav a{color:var(--ink);text-decoration:none}
-.top nav a:hover{text-decoration:underline}
-.lang{font:600 .85rem/1 var(--display);background:none;border:2px solid var(--ink);color:var(--ink);padding:6px 9px;cursor:pointer;border-radius:2px}
-.lang:hover{background:var(--ink);color:#fff}
+.top .who{font:800 1.12rem/1 var(--text);color:var(--ink);text-decoration:none;white-space:nowrap}
+.top nav{display:flex;align-items:center;gap:22px;font-size:.98rem}
+.top nav a{text-decoration:none}
+.top nav a:hover{text-decoration:underline;text-decoration-color:var(--orange)}
+.lang{font:700 .9rem/1 var(--text);background:none;border:0;color:var(--ink);padding:8px 10px;cursor:pointer}
 
-/* --- Hero --- */
-.hero{background:var(--apron);border-bottom:1px solid var(--rule)}
-.hero .wrap{padding-top:64px;padding-bottom:72px}
-.hero .logo{width:clamp(240px,38vw,460px);height:auto;margin:28px 0 44px}
-.hero h1{font-size:clamp(2.5rem,6vw,4.6rem);letter-spacing:-.01em;max-width:19ch;text-wrap:balance}
-.hero .lede{font-size:clamp(1.1rem,1.8vw,1.3rem);max-width:58ch;margin:28px 0 0;color:#26333E}
-.facts{display:flex;flex-wrap:wrap;gap:12px 32px;margin:36px 0 0;padding:0;list-style:none;font-size:.97rem;color:var(--muted)}
-.facts strong{color:var(--ink);font-weight:600}
-.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
-.btn{display:inline-block;font:600 1rem/1 var(--display);padding:13px 18px;text-decoration:none;border:2px solid var(--ink);color:var(--ink);border-radius:2px}
-.btn.primary{background:var(--ink);color:#fff}
-.btn:hover{background:var(--ink);color:#fff}
-.btn.primary:hover{background:#000}
-
-.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:start}
-.portrait{margin:0;border:2px solid var(--ink);background:#fff;width:300px;margin-top:8px}
+/* Hero : la toile pointillée d'Excalidraw */
+.hero{background-color:#fff;background-image:radial-gradient(var(--dots) 1.2px,transparent 1.3px);background-size:22px 22px;border-bottom:0}
+.hero .wrap{padding-top:40px;padding-bottom:80px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:64px;align-items:start}
+.hero .logo{width:clamp(240px,36vw,440px);margin:24px 0 40px}
+.hero h1{font-size:clamp(2.3rem,5vw,3.8rem);max-width:19ch;text-wrap:balance}
+.hero .lede{font-size:clamp(1.08rem,1.7vw,1.22rem);max-width:58ch;margin:26px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:10px 30px;margin:30px 0 0;padding:0;list-style:none;font-size:.96rem;color:var(--muted)}
+.facts strong{color:var(--ink);font-weight:700}
+.cta{display:flex;flex-wrap:wrap;gap:22px;margin-top:38px}
+.btn{display:inline-block;font:700 1rem/1 var(--text);padding:14px 20px;text-decoration:none;color:var(--ink);background:transparent}
+.btn.primary{color:#fff}
+.btn:hover{color:var(--orange)}
+.btn.primary:hover{color:var(--yellow)}
+.portrait{margin:12px 0 0;width:290px;background:#fff}
 .portrait img{width:100%;aspect-ratio:1;object-fit:cover}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:0}.portrait{width:132px;order:-1;margin:8px 0 0}}
-/* --- Sections --- */
-section{padding:84px 0 0}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:44px}
-.sec-head h2{font-size:clamp(1.8rem,3.4vw,2.4rem)}
+
+section{padding:88px 0 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding-bottom:16px;margin-bottom:46px}
+.sec-head h2{font-size:clamp(1.8rem,3.2vw,2.4rem)}
 .sec-head p{margin:0;color:var(--muted);font-size:.95rem;max-width:46ch;text-align:right}
 
-/* Projets phares */
-.feature{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:start;margin-bottom:88px}
+.tag{display:inline-block;font:800 .82rem/1 var(--text);letter-spacing:.02em;padding:7px 12px 6px;color:var(--ink)}
+.feature{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;margin-bottom:96px}
 .feature.flip{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
 .feature.flip .shot{order:2}
 .shot{margin:0}
-.shot img{border:1px solid var(--rule)}
-.shot figcaption{font-size:.85rem;color:var(--muted);margin-top:10px}
-.feature h3{font-size:clamp(1.7rem,3vw,2.3rem);margin:18px 0 10px}
-.q{font-size:1.15rem;color:#26333E;margin-bottom:22px}
-.nums{list-style:none;margin:0 0 22px;padding:0;border-top:1px solid var(--rule)}
-.nums li{display:grid;grid-template-columns:7.2em 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--rule);font-size:.98rem;line-height:1.4}
-.nums b{font:700 1.35rem/1.1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.shot a{display:block;background:#fff}
+.shot figcaption{font:400 .88rem/1.4 var(--text);color:var(--muted);margin-top:14px}
+.feature h3{font-size:clamp(1.8rem,3vw,2.3rem);margin:20px 0 8px}
+.q{font-size:1.12rem;margin-bottom:22px}
+.nums{list-style:none;margin:0 0 22px;padding:0}
+.nums li{display:grid;grid-template-columns:8.2em 1fr;gap:14px;padding:10px 0;font-size:.98rem;line-height:1.45;border-bottom:1.5px dashed #c9cbce}
+.nums li:last-child{border-bottom:0}
+.nums b{font:800 1.35rem/1.1 var(--text);color:var(--orange);white-space:nowrap}
 .stack{font-size:.92rem;color:var(--muted);margin-bottom:18px}
-.stack strong{color:var(--ink);font-weight:600}
-.links{display:flex;flex-wrap:wrap;gap:12px 22px;font-weight:600}
-.note{font-size:.85rem;color:var(--muted);margin-top:16px}
+.stack strong{color:var(--ink);font-weight:700}
+.links{display:flex;flex-wrap:wrap;gap:12px 22px;font-weight:700}
+.note{font-size:.86rem;color:var(--muted);margin-top:16px}
 
-/* Autres projets */
-.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px}
-.more .shot + .sign,.more .textonly + .sign{margin-top:22px}
+.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
 .more article h3{font-size:1.45rem;margin:14px 0 8px}
-.more article p{font-size:.98rem}
+.more article p{font-size:.97rem}
 .more .shot img{aspect-ratio:4/3;object-fit:cover;object-position:top left;width:100%}
-.more .textonly{background:var(--apron);aspect-ratio:4/3;display:flex;align-items:flex-end;padding:22px;border:1px solid var(--rule)}
-.more .textonly span{font:700 2.6rem/1 var(--display);color:var(--ink)}
-.more .textonly small{display:block;font:500 .95rem/1.3 var(--text);color:var(--muted);margin-top:8px}
+.more .shot + .tag,.more .textonly + .tag{margin-top:24px}
+.more .textonly{aspect-ratio:4/3;display:flex;align-items:flex-end;padding:22px;background:var(--cream)}
+.more .textonly span{font:800 2.8rem/1 var(--text);color:var(--orange)}
+.more .textonly small{display:block;font:400 .95rem/1.35 var(--text);color:var(--ink);margin-top:8px}
 
-/* Parcours (séquence réelle : chronologie) */
-.path{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px}
-.path .intro .cvlink{margin-top:28px}
-.path .intro p{font-size:1.1rem;color:#26333E;max-width:44ch}
+.path{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:60px}
+.path .intro p{font-size:1.08rem;max-width:44ch}
+.path .intro .cvlink{margin-top:30px}
 .timeline{list-style:none;margin:0;padding:0;position:relative}
-.timeline::before{content:"";position:absolute;left:5.6em;top:8px;bottom:8px;width:0;border-left:3px dashed var(--sign)}
-.timeline li{display:grid;grid-template-columns:5.6em 1fr;gap:26px;padding:0 0 26px;position:relative}
-.timeline li::after{content:"";position:absolute;left:calc(5.6em - 5px);top:7px;width:13px;height:13px;background:#000;border:2px solid var(--sign)}
-.timeline time{font:600 .95rem/1.5 var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
-.timeline b{display:block;font-weight:600}
+.timeline li{display:grid;grid-template-columns:5.4em 1fr;gap:34px;padding:0 0 26px;position:relative}
+.timeline time{font:700 .95rem/1.5 var(--text);font-variant-numeric:tabular-nums;color:var(--muted)}
+.timeline b{display:block;font-weight:700}
 .timeline div > span{display:block;color:var(--muted);font-size:.95rem;line-height:1.45;margin-top:4px}
-.timeline .now::after{background:var(--sign);border-color:#000}
 
-/* Pied de page */
-footer{margin-top:96px;background:var(--ink);color:#DDE3E1}
-footer .wrap{padding-top:56px;padding-bottom:56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end}
-footer h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:12px}
+footer{margin-top:104px;background:var(--cream)}
+footer .wrap{padding-top:60px;padding-bottom:56px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:flex-end}
+footer h2{font-size:clamp(1.8rem,3.2vw,2.4rem);margin-bottom:12px}
 footer p{margin:0;max-width:52ch}
-footer a{color:var(--sign)}
-footer .contact{display:flex;flex-wrap:wrap;gap:12px}
-footer .btn{border-color:var(--sign);color:var(--sign)}
-footer .btn:hover{background:var(--sign);color:#000}
-footer .btn.primary{background:var(--sign);color:#000}
-footer .btn.primary:hover{background:#fff;border-color:#fff}
-footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;padding-bottom:28px}
+footer .contact{display:flex;flex-wrap:wrap;gap:22px}
+footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top:0;padding-bottom:28px}
 
 @media (max-width:900px){
-  .feature,.feature.flip,.path{grid-template-columns:1fr;gap:28px}
-  .feature.flip .shot{order:0}
-  .more{grid-template-columns:1fr;gap:56px}
+  .hero-grid,.feature,.feature.flip,.path{grid-template-columns:1fr;gap:30px}
+  .portrait-wrap{order:-1}
+  .portrait{width:140px;margin:8px 0 0}
+    .feature.flip .shot{order:0}
+  .more{grid-template-columns:1fr;gap:60px}
   .sec-head{flex-direction:column;align-items:flex-start}
   .sec-head p{text-align:left}
   .top nav .hide-s{display:none}
 }
-@media (max-width:520px){
-  body{font-size:17px}
-  .wrap{padding:0 20px}
-  .hero .wrap{padding-top:40px;padding-bottom:52px}
-  .nums li{grid-template-columns:6em 1fr}
-}
-@media (prefers-reduced-motion:no-preference){
-  .hero .logo{animation:lit .6s ease-out both}
-  @keyframes lit{from{opacity:0;filter:brightness(.4)}to{opacity:1;filter:none}}
-}
-@media print{.top nav,.lang,.cta,footer .contact{display:none}section{padding-top:32px}}
+@media (max-width:520px){.wrap{padding:0 20px}.top .who{font-size:1.15rem}.top nav{gap:14px}.nums li{grid-template-columns:6.2em 1fr}}
+@media print{.top nav,.lang,.cta,footer .contact,.rough{display:none}}
 </style>
 </head>
 <body>
@@ -195,11 +161,11 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       <li><span class="fr">Ouvert à : <strong>France, Genève, Luxembourg, télétravail</strong></span><span class="en">Open to: <strong>France, Geneva, Luxembourg, remote</strong></span></li>
     </ul>
     <div class="cta">
-      <a class="btn primary" href="#projets"><span class="fr">Voir les projets</span><span class="en">See the projects</span></a>
-      <a class="btn" href="mailto:val.rouquier@gmail.com"><span class="fr">Me contacter</span><span class="en">Get in touch</span></a>
+      <a class="btn primary" data-rough="solid" href="#projets"><span class="fr">Voir les projets</span><span class="en">See the projects</span></a>
+      <a class="btn" data-rough="box" href="mailto:val.rouquier@gmail.com"><span class="fr">Me contacter</span><span class="en">Get in touch</span></a>
     </div>
     </div>
-    <figure class="portrait"><img src="img/valentin.webp" width="640" height="640" alt="Portrait dessiné de Valentin Rouquier"></figure>
+    <div class="portrait-wrap"><figure class="portrait" data-rough="frame"><img src="img/valentin.webp" width="640" height="640" alt="Portrait dessiné de Valentin Rouquier"></figure></div>
     </div>
   </div>
 </header>
@@ -207,7 +173,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
 <main>
 <section id="projets" aria-labelledby="h-projets">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-rough="underline">
       <h2 id="h-projets"><span class="fr">Projets publiés</span><span class="en">Published projects</span></h2>
       <p><span class="fr">Données publiques, code ouvert, méthode et limites documentées dans chaque dépôt.</span><span class="en">Public data, open code, with method and limits documented in each repository.</span></p>
     </div>
@@ -215,11 +181,11 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
     <!-- SILLAGE -->
     <article class="feature" aria-labelledby="h-sillage">
       <figure class="shot">
-        <a href="https://github.com/valrqr/sillage"><img src="img/sillage-dashboard.webp" width="1800" height="1016" alt="Tableau de bord Power BI SILLAGE : 197 navires, 4,60 Mt de CO2, vitesse médiane 12,4 nœuds, nuage de points vitesse et carburant par mille, liste des 4 navires à investiguer"></a>
+        <a data-rough="frame" href="https://github.com/valrqr/sillage"><img src="img/sillage-dashboard.webp" width="1800" height="1016" alt="Tableau de bord Power BI SILLAGE : 197 navires, 4,60 Mt de CO2, vitesse médiane 12,4 nœuds, nuage de points vitesse et carburant par mille, liste des 4 navires à investiguer"></a>
         <figcaption><span class="fr">Tableau de bord Power BI (Microsoft Fabric), données EU MRV 2025.</span><span class="en">Power BI dashboard (Microsoft Fabric), EU MRV 2025 data.</span></figcaption>
       </figure>
       <div>
-        <span class="sign loc"><span><span class="fr">MARITIME · EU MRV</span><span class="en">SHIPPING · EU MRV</span></span></span>
+        <span class="tag" data-rough="tag"><span class="fr">MARITIME · EU MRV</span><span class="en">SHIPPING · EU MRV</span></span>
         <h3 id="h-sillage">SILLAGE</h3>
         <p class="q">
           <span class="fr">Que disent les déclarations d'émissions européennes de la flotte de porte-conteneurs CMA CGM ?</span>
@@ -239,11 +205,11 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
     <!-- MAINTAIN -->
     <article class="feature flip" aria-labelledby="h-maintain">
       <figure class="shot">
-        <a href="https://github.com/valrqr/maintain-4000"><img src="img/maintain-carte.webp" width="1100" height="1050" loading="lazy" alt="Carte des trajectoires d'arrivée à Nice Côte d'Azur, portions en palier surlignées en bleu, concentrées au-dessus de la mer au sud-ouest de l'aéroport"></a>
+        <a data-rough="frame" href="https://github.com/valrqr/maintain-4000"><img src="img/maintain-carte.webp" width="1100" height="1050" loading="lazy" alt="Carte des trajectoires d'arrivée à Nice Côte d'Azur, portions en palier surlignées en bleu, concentrées au-dessus de la mer au sud-ouest de l'aéroport"></a>
         <figcaption><span class="fr">319 arrivées en piste 04 et leurs paliers, positions ADS-B OpenSky.</span><span class="en">319 runway 04 arrivals and their level-offs, OpenSky ADS-B positions.</span></figcaption>
       </figure>
       <div>
-        <span class="sign loc"><span><span class="fr">AÉRIEN · LFMN</span><span class="en">AVIATION · LFMN</span></span></span>
+        <span class="tag" data-rough="tag"><span class="fr">AÉRIEN · LFMN</span><span class="en">AVIATION · LFMN</span></span>
         <h3 id="h-maintain">MAINTAIN</h3>
         <p class="q">
           <span class="fr">Combien de carburant coûtent les paliers imposés pendant la descente vers Nice Côte d'Azur ?</span>
@@ -262,8 +228,8 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
 
     <div class="more">
       <article aria-labelledby="h-mitoyen">
-        <figure class="shot"><a href="https://github.com/valrqr/mitoyen"><img src="img/mitoyen-plan-travaux.webp" width="900" height="1012" loading="lazy" alt="Plan de travaux généré par Mitoyen : projection du fonds de travaux sur 10 ans, cotisation lissée et montants à appeler par année"></a></figure>
-        <span class="sign loc"><span><span class="fr">COPROPRIÉTÉ</span><span class="en">CONDOMINIUM</span></span></span>
+        <figure class="shot"><a data-rough="frame" href="https://github.com/valrqr/mitoyen"><img src="img/mitoyen-plan-travaux.webp" width="900" height="1012" loading="lazy" alt="Plan de travaux généré par Mitoyen : projection du fonds de travaux sur 10 ans, cotisation lissée et montants à appeler par année"></a></figure>
+        <span class="tag" data-rough="tag"><span class="fr">COPROPRIÉTÉ</span><span class="en">CONDOMINIUM</span></span>
         <h3 id="h-mitoyen">Mitoyen</h3>
         <p><span class="fr">Un assistant open source pour les syndics bénévoles : appels de fonds au centime, plan de travaux sur 10 ans, rapprochement bancaire et relances des impayés. L'agent prépare, le syndic valide et signe.</span><span class="en">An open-source assistant for volunteer condominium managers: service-charge calls to the cent, a 10-year works plan, bank reconciliation and arrears reminders. The agent prepares, the manager approves and signs.</span></p>
         <p class="stack"><strong>Python, FastAPI, n8n, Docker</strong></p>
@@ -271,8 +237,8 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       </article>
 
       <article aria-labelledby="h-indic">
-        <figure class="shot"><a href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><img src="img/indicateurs-saisie.webp" width="592" height="419" loading="lazy" alt="Formulaire de saisie journalière d'Indicateurs.xlsm : inspections, SGS, convoyages, FOD, tractages, facturations"></a></figure>
-        <span class="sign loc"><span>AIRSIDE · EXCEL</span></span>
+        <figure class="shot"><a data-rough="frame" href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><img src="img/indicateurs-saisie.webp" width="592" height="419" loading="lazy" alt="Formulaire de saisie journalière d'Indicateurs.xlsm : inspections, SGS, convoyages, FOD, tractages, facturations"></a></figure>
+        <span class="tag" data-rough="tag">AIRSIDE · EXCEL</span>
         <h3 id="h-indic">Indicateurs.xlsm</h3>
         <p><span class="fr">L'outil que j'ai conçu aux Aéroports de la Côte d'Azur pour l'équipe des opérations piste : saisie quotidienne contrôlée, puis reporting automatique mensuel, saisonnier IATA et annuel. 25 formulaires, environ 10 600 lignes de VBA.</span><span class="en">The tool I built at Aéroports de la Côte d'Azur for the airside operations team: validated daily data entry, then automated monthly, IATA-season and annual reporting. 25 forms, about 10,600 lines of VBA.</span></p>
         <p class="stack"><strong>Excel, VBA, PowerPoint</strong></p>
@@ -280,8 +246,8 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       </article>
 
       <article aria-labelledby="h-diab">
-        <div class="textonly" aria-hidden="true"><div><span>25 %</span><small class="fr">de réadmission dans le groupe à risque, contre 11 % en moyenne</small><small class="en">readmission rate in the high-risk group, versus 11% on average</small></div></div>
-        <span class="sign loc"><span><span class="fr">SANTÉ · FORMATION</span><span class="en">HEALTHCARE · TRAINING</span></span></span>
+        <div class="textonly" aria-hidden="true" data-rough="frame"><div><span>25 %</span><small class="fr">de réadmission dans le groupe à risque, contre 11 % en moyenne</small><small class="en">readmission rate in the high-risk group, versus 11% on average</small></div></div>
+        <span class="tag" data-rough="tag"><span class="fr">SANTÉ · FORMATION</span><span class="en">HEALTHCARE · TRAINING</span></span>
         <h3 id="h-diab"><span class="fr">Réadmissions de patients diabétiques</span><span class="en">Diabetic patient readmissions</span></h3>
         <p><span class="fr">Projet de fin de formation en binôme : pipeline ELT sur environ 100 000 hospitalisations, segmentation et classification (XGBoost), puis un tableau de bord Power BI pour un public non technique.</span><span class="en">Final training project, in pairs: an ELT pipeline over about 100,000 hospital stays, segmentation and classification (XGBoost), then a Power BI dashboard for a non-technical audience.</span></p>
         <p class="stack"><strong>Airbyte, Airflow, Docker, BigQuery, dbt, Python, Power BI</strong></p>
@@ -293,16 +259,16 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
 
 <section id="parcours" aria-labelledby="h-parcours">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head" data-rough="underline">
       <h2 id="h-parcours"><span class="fr">Du terrain à la donnée</span><span class="en">From the field to the data</span></h2>
     </div>
     <div class="path">
       <div class="intro">
         <p><span class="fr">Chef avion, puis coordonnateur des opérations piste, puis agent d'opérations portuaires : j'ai passé douze ans à faire tourner des opérations où chaque minute et chaque décision comptent. J'y ai construit mes premiers outils de données, en Excel et VBA.</span><span class="en">Ramp agent and turnaround coordinator, then airside operations coordinator, then port operations agent: I spent twelve years running operations where every minute and every decision counts. That's where I built my first data tools, in Excel and VBA.</span></p>
         <p><span class="fr">Ma formation de Data Analyst m'a donné les outils pour aller plus loin. Je cherche aujourd'hui un poste où l'on a besoin des deux : comprendre l'opération et faire parler ses données.</span><span class="en">My data analyst training gave me the tools to go further. I'm now looking for a role that needs both: understanding the operation and making its data speak.</span></p>
-        <p class="cvlink"><a class="btn fr" href="cv/CV-Valentin-Rouquier-FR.pdf" download><span>Télécharger le CV (PDF)</span></a><a class="btn en" href="cv/Resume-Valentin-Rouquier-EN.pdf" download><span>Download my resume (PDF)</span></a></p>
+        <p class="cvlink"><a class="btn fr" data-rough="box" href="cv/CV-Valentin-Rouquier-FR.pdf" download><span>Télécharger le CV (PDF)</span></a><a class="btn en" data-rough="box" href="cv/Resume-Valentin-Rouquier-EN.pdf" download><span>Download my resume (PDF)</span></a></p>
       </div>
-      <ol class="timeline" reversed>
+      <ol class="timeline" reversed data-rough="timeline">
         <li class="now"><time>2026</time><div><b><span class="fr">Certification Microsoft PL-300 et formation Data Analyst</span><span class="en">Microsoft PL-300 certification and data analyst training</span></b><span>La Capsule · <a href="https://learn.microsoft.com/api/credentials/share/en-gb/ValentinRouquier-4848/92EA7B45D7254074?sharingId=6C76CA7A9C38FB35"><span class="fr">vérifier la certification</span><span class="en">verify the certification</span></a></span></div></li>
         <li><time>2025-26</time><div><b><span class="fr">Agent d'opérations portuaires</span><span class="en">Port operations agent</span></b><span class="fr">Intercruises, Nice · plus de 200 escales de croisière par saison, et un outil Excel/VBA d'aide à la négociation des tarifs autocaristes</span><span class="en">Intercruises, Nice · 200+ cruise calls per season, and an Excel/VBA tool to support coach-rate negotiations</span></div></li>
         <li><time>2020-25</time><div><b><span class="fr">Coordonnateur des opérations piste</span><span class="en">Airside operations coordinator</span></b><span class="fr">Aéroports de la Côte d'Azur · conception d'Indicateurs.xlsm, l'outil de reporting airside de l'équipe ; formateur et examinateur du permis de circulation airside, plus de 30 agents par an</span><span class="en">Aéroports de la Côte d'Azur · built Indicateurs.xlsm, the team's airside reporting tool; trainer and examiner for the airside driving permit, 30+ staff a year</span></div></li>
@@ -322,12 +288,12 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
       <p><span class="fr">Un poste en opérations, en performance ou en data dans le transport ? Écrivez-moi, je réponds vite.</span><span class="en">An operations, performance or data role in transport? Write to me, I reply quickly.</span></p>
     </div>
     <div class="contact">
-      <a class="btn primary" href="mailto:val.rouquier@gmail.com">val.rouquier@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/valentin-rouquier-286833347">LinkedIn</a>
-      <a class="btn" href="https://github.com/valrqr">GitHub</a>
+      <a class="btn primary" data-rough="solid" href="mailto:val.rouquier@gmail.com">val.rouquier@gmail.com</a>
+      <a class="btn" data-rough="box" href="https://www.linkedin.com/in/valentin-rouquier-286833347">LinkedIn</a>
+      <a class="btn" data-rough="box" href="https://github.com/valrqr">GitHub</a>
     </div>
   </div>
-  <div class="wrap small">© 2026 Valentin Rouquier · <span class="fr">Police Barlow (licence SIL OFL), hébergée sur ce site</span><span class="en">Barlow typeface (SIL OFL), self-hosted</span></div>
+  <div class="wrap small">© 2026 Valentin Rouquier · <span class="fr">Police Nunito (SIL OFL), dessins Rough.js (MIT)</span><span class="en">Nunito typeface (SIL OFL), Rough.js drawings (MIT)</span></div>
 </footer>
 
 <script>
@@ -344,6 +310,49 @@ footer .wrap.small{display:block;font-size:.82rem;color:#9AA6A3;padding-top:0;pa
   var nav=(navigator.language||'fr').toLowerCase().slice(0,2);
   set(q==='en'||q==='fr' ? q : (saved || (nav==='fr' ? 'fr' : 'en')));
   btn.addEventListener('click',function(){ set(root.getAttribute('data-lang')==='en'?'fr':'en'); });
+})();
+</script>
+<script src="js/rough.js"></script>
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg', INK='#1e1e1e', ORANGE='#f08c00', YELLOW='#ffd43b';
+  function seed(i){return 7+i*13;}
+  function layer(el,front){
+    var old=el.querySelector(':scope > svg.rough'); if(old) old.remove();
+    var svg=document.createElementNS(NS,'svg'); svg.setAttribute('class','rough'+(front?' front':'')); svg.setAttribute('aria-hidden','true');
+    el.prepend(svg); return svg;
+  }
+  function draw(){
+    var els=document.querySelectorAll('[data-rough]');
+    els.forEach(function(el,i){
+      if(!el.offsetParent && el.getClientRects().length===0) return;
+      var kind=el.getAttribute('data-rough'), w=el.offsetWidth, h=el.offsetHeight, p=6;
+      var svg=layer(el, kind==='frame'), rc=rough.svg(svg), s=seed(i), n;
+      svg.setAttribute('viewBox','0 0 '+(w+2*p)+' '+(h+2*p));
+      if(kind==='box') n=rc.rectangle(p,p,w,h,{stroke:INK,strokeWidth:1.6,roughness:1.3,bowing:1,seed:s});
+      else if(kind==='solid') n=rc.rectangle(p,p,w,h,{stroke:INK,strokeWidth:1.6,roughness:1.3,fill:INK,fillStyle:'solid',seed:s});
+      else if(kind==='tag') n=rc.rectangle(p,p,w,h,{stroke:INK,strokeWidth:1.4,roughness:1.4,fill:YELLOW,fillStyle:'hachure',hachureGap:5,fillWeight:1.2,seed:s});
+      else if(kind==='frame') n=rc.rectangle(p+1,p+1,w-2,h-2,{stroke:INK,strokeWidth:2,roughness:1.1,bowing:.8,seed:s});
+      else if(kind==='underline') n=rc.line(p,h+p-2,w+p,h+p-4,{stroke:INK,strokeWidth:2.2,roughness:1.6,bowing:2,seed:s});
+      else if(kind==='timeline'){
+        var g=document.createElementNS(NS,'g'), items=el.querySelectorAll('li'), x=p+parseFloat(getComputedStyle(items[0]).gridTemplateColumns)+17;
+        var first=items[0].offsetTop+12, last=items[items.length-1].offsetTop+12;
+        g.appendChild(rc.line(x,p+first,x,p+last,{stroke:INK,strokeWidth:1.6,roughness:1.5,bowing:3,seed:s}));
+        items.forEach(function(li,j){
+          var cur=j===0;
+          g.appendChild(rc.circle(x,p+li.offsetTop+12,cur?20:15,{stroke:INK,strokeWidth:1.6,roughness:1.2,fill:cur?ORANGE:'#fff',fillStyle:'solid',seed:s+j+1}));
+        });
+        n=g;
+      }
+      if(n) svg.appendChild(n);
+    });
+  }
+  var t; function later(){clearTimeout(t);t=setTimeout(draw,80);}
+  window.addEventListener('resize',later);
+  document.querySelectorAll('img').forEach(function(im){ if(!im.complete) im.addEventListener('load',later); });
+  document.getElementById('lang').addEventListener('click',function(){setTimeout(draw,0);});
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(draw);
+  window.addEventListener('load',draw);
 })();
 </script>
 </body>
