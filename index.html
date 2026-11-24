@@ -122,12 +122,15 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 .logos img{height:62px;width:auto}
 .logos img.sq{height:84px}
 .feature h3 .plogo{height:clamp(56px,7vw,78px);width:auto}
-.more h3 .plogo{height:96px;width:auto}
+.more h3 .plogo{height:84px;width:auto}
 .more .textonly{position:relative}
 .more .textonly .tlogo{position:absolute;top:20px;right:20px;width:78px;height:auto}
 .soon{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:center;margin-top:104px;padding:46px 44px;background:var(--cream)}
 .soon .slogo{width:100%;max-width:520px}
 .soon h3{font-size:clamp(1.5rem,2.6vw,1.9rem);margin:18px 0 10px}
+.soon.small{grid-template-columns:minmax(0,3fr) minmax(0,8fr);margin-top:36px;padding:34px 40px;background:#fff}
+.soon.small .slogo{max-width:230px;margin:0 auto}
+.soon.small:not(:has(.slogo)){grid-template-columns:1fr}
 
 @media (max-width:900px){
   .soon{grid-template-columns:1fr;gap:26px;padding:30px 24px}
@@ -198,10 +201,11 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 
     <p class="logos-intro"><span class="fr">Je dessine moi-même le logo de chaque projet, dans Excalidraw, avec une règle : il doit raconter le projet avant même qu'on en lise la première ligne.</span><span class="en">I draw every project logo myself, in Excalidraw, with one rule: it has to tell the project's story before you read a single line.</span></p>
     <ul class="logos" aria-label="Logos des projets">
-      <li><a href="#h-sillage"><img src="img/logos/sillage.svg" width="1296" height="422" alt="SILLAGE"></a></li>
+      <li><a href="#h-sillage"><img src="img/logos/sillage.svg" width="1273" height="406" alt="SILLAGE"></a></li>
       <li><a href="#h-maintain"><img src="img/logos/maintain.png" width="1354" height="350" alt="MAINTAIN"></a></li>
-      <li><a href="#h-mitoyen"><img class="sq" src="img/logos/mitoyen.svg" width="456" height="544" alt="Mitoyen"></a></li>
-      <li><a href="#h-tarmac"><img src="img/logos/tarmac.svg" width="1199" height="319" alt="TARMAC"></a></li>
+      <li><a href="#h-mitoyen"><img class="sq" src="img/logos/mitoyen-icone.svg" width="432" height="408" alt="Mitoyen"></a></li>
+      <li><a href="#h-tarmac"><img src="img/logos/tarmac.svg" width="1184" height="318" alt="TARMAC"></a></li>
+      <li><a href="#h-goaround"><img src="img/logos/goaround.png" height="62" alt="Go Around" onerror="this.closest('li').remove()"></a></li>
       <li><a href="#h-diab"><img class="sq" src="img/logos/readmission.png" width="320" height="347" alt="Réadmissions de patients diabétiques"></a></li>
     </ul>
 
@@ -213,7 +217,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       </figure>
       <div>
         <span class="tag" data-rough="tag"><span class="fr">MARITIME · EU MRV</span><span class="en">SHIPPING · EU MRV</span></span>
-        <h3 id="h-sillage"><img class="plogo" src="img/logos/sillage.svg" width="1296" height="422" alt="SILLAGE"></h3>
+        <h3 id="h-sillage"><img class="plogo" src="img/logos/sillage.svg" width="1273" height="406" alt="SILLAGE"></h3>
         <p class="q">
           <span class="fr">Que disent les déclarations d'émissions européennes de la flotte de porte-conteneurs CMA CGM ?</span>
           <span class="en">What do EU emissions reports reveal about the CMA CGM container fleet?</span>
@@ -257,7 +261,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       <article aria-labelledby="h-mitoyen">
         <figure class="shot"><a data-rough="frame" href="https://github.com/valrqr/mitoyen"><img src="img/mitoyen-plan-travaux.webp" width="900" height="1012" loading="lazy" alt="Plan de travaux généré par Mitoyen : projection du fonds de travaux sur 10 ans, cotisation lissée et montants à appeler par année"></a></figure>
         <span class="tag" data-rough="tag"><span class="fr">COPROPRIÉTÉ</span><span class="en">CONDOMINIUM</span></span>
-        <h3 id="h-mitoyen"><img class="plogo" src="img/logos/mitoyen.svg" width="456" height="544" alt="Mitoyen"></h3>
+        <h3 id="h-mitoyen"><img class="plogo" src="img/logos/mitoyen-icone.svg" width="432" height="408" alt="Mitoyen"></h3>
         <p><span class="fr">Un assistant open source pour les syndics bénévoles : appels de fonds au centime, plan de travaux sur 10 ans, rapprochement bancaire et relances des impayés. L'agent prépare, le syndic valide et signe.</span><span class="en">An open-source assistant for volunteer condominium managers: service-charge calls to the cent, a 10-year works plan, bank reconciliation and arrears reminders. The agent prepares, the manager approves and signs.</span></p>
         <p class="stack"><strong>Python, FastAPI, n8n, Docker</strong></p>
         <div class="links"><a href="https://github.com/valrqr/mitoyen"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
@@ -284,13 +288,24 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 
     <!-- TARMAC (en construction) -->
     <article class="soon" aria-labelledby="h-tarmac">
-      <img class="slogo" src="img/logos/tarmac.svg" width="1199" height="319" alt="" loading="lazy">
+      <img class="slogo" src="img/logos/tarmac.svg" width="1184" height="318" alt="" loading="lazy">
       <div>
         <span class="tag" data-rough="tag"><span class="fr">EN CONSTRUCTION · AIRSIDE</span><span class="en">IN PROGRESS · AIRSIDE</span></span>
         <h3 id="h-tarmac"><span class="vh">TARMAC : </span><span class="fr">Et si je réécrivais Indicateurs.xlsm aujourd'hui ?</span><span class="en">What if I rebuilt Indicateurs.xlsm today?</span></h3>
         <p><span class="fr">Le successeur de mon outil airside : chaque événement côté piste est saisi au moment où il se produit, sur tablette ou téléphone, puis les indicateurs journaliers, mensuels, saisonniers IATA et annuels sont calculés automatiquement jusqu'au tableau de bord Power BI. Grille d'indicateurs générique, données 100 % synthétiques.</span><span class="en">The successor to my airside tool: every airside event is logged as it happens, on a tablet or phone, then daily, monthly, IATA-season and annual indicators are computed automatically, all the way to a Power BI dashboard. Generic indicator framework, 100% synthetic data.</span></p>
         <p class="stack"><strong>Python, Streamlit, SQLite, BigQuery, dbt, Power BI</strong></p>
         <p class="note"><span class="fr">Publication prévue début décembre 2026.</span><span class="en">Release planned for early December 2026.</span></p>
+      </div>
+    </article>
+
+    <!-- Go Around (teasing) -->
+    <article class="soon small" data-rough="box" aria-labelledby="h-goaround">
+      <img class="slogo" src="img/logos/goaround.png" alt="" loading="lazy" onerror="this.remove()">
+      <div>
+        <span class="tag" data-rough="tag"><span class="fr">BIENTÔT · RUNNING</span><span class="en">COMING SOON · RUNNING</span></span>
+        <h3 id="h-goaround"><span class="vh">Go Around : </span><span class="fr">Un coach running piloté par mes propres données</span><span class="en">A running coach driven by my own data</span></h3>
+        <p><span class="fr">Les sorties de ma montre Garmin remontent par l'API Intervals.icu vers un serveur MCP écrit en Python : Claude y lit l'allure, la fréquence cardiaque et la charge d'entraînement, puis ajuste chaque semaine les séances renvoyées jusqu'à la montre. Le nom ? Le <em>go around</em>, c'est la remise des gaz : l'avion interrompt son approche pour en refaire une meilleure.</span><span class="en">Runs from my Garmin watch flow through the Intervals.icu API to an MCP server written in Python: Claude reads pace, heart rate and training load, then adjusts each week's sessions and sends them back to the watch. The name? A <em>go-around</em> is when an aircraft aborts its approach to fly a better one.</span></p>
+        <p class="stack"><strong>Python, API Intervals.icu, MCP, n8n, DuckDB, Streamlit</strong></p>
       </div>
     </article>
   </div>
