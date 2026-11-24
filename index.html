@@ -113,7 +113,25 @@ footer p{margin:0;max-width:52ch}
 footer .contact{display:flex;flex-wrap:wrap;gap:22px}
 footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top:0;padding-bottom:28px}
 
+/* Logos dessinés à la main */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.logos-intro{max-width:60ch;margin:-18px 0 26px;font-size:1.02rem}
+.logos{display:flex;flex-wrap:wrap;align-items:center;gap:26px 46px;margin:0 0 92px;padding:0;list-style:none}
+.logos a{display:block;transition:transform .18s ease}
+.logos a:hover,.logos a:focus-visible{transform:rotate(-2deg) scale(1.05)}
+.logos img{height:62px;width:auto}
+.logos img.sq{height:84px}
+.feature h3 .plogo{height:clamp(56px,7vw,78px);width:auto}
+.more h3 .plogo{height:96px;width:auto}
+.more .textonly{position:relative}
+.more .textonly .tlogo{position:absolute;top:20px;right:20px;width:78px;height:auto}
+.soon{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:center;margin-top:104px;padding:46px 44px;background:var(--cream)}
+.soon .slogo{width:100%;max-width:520px}
+.soon h3{font-size:clamp(1.5rem,2.6vw,1.9rem);margin:18px 0 10px}
+
 @media (max-width:900px){
+  .soon{grid-template-columns:1fr;gap:26px;padding:30px 24px}
+  .logos{gap:22px 30px}.logos img{height:48px}.logos img.sq{height:66px}
   .hero-grid,.feature,.feature.flip,.path{grid-template-columns:1fr;gap:30px}
   .portrait-wrap{order:-1}
   .portrait{width:140px;margin:8px 0 0}
@@ -178,6 +196,15 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       <p><span class="fr">Données publiques, code ouvert, méthode et limites documentées dans chaque dépôt.</span><span class="en">Public data, open code, with method and limits documented in each repository.</span></p>
     </div>
 
+    <p class="logos-intro"><span class="fr">Je dessine moi-même le logo de chaque projet, dans Excalidraw, avec une règle : il doit raconter le projet avant même qu'on en lise la première ligne.</span><span class="en">I draw every project logo myself, in Excalidraw, with one rule: it has to tell the project's story before you read a single line.</span></p>
+    <ul class="logos" aria-label="Logos des projets">
+      <li><a href="#h-sillage"><img src="img/logos/sillage.svg" width="1296" height="422" alt="SILLAGE"></a></li>
+      <li><a href="#h-maintain"><img src="img/logos/maintain.png" width="1354" height="350" alt="MAINTAIN"></a></li>
+      <li><a href="#h-mitoyen"><img class="sq" src="img/logos/mitoyen.svg" width="456" height="544" alt="Mitoyen"></a></li>
+      <li><a href="#h-tarmac"><img src="img/logos/tarmac.svg" width="1199" height="319" alt="TARMAC"></a></li>
+      <li><a href="#h-diab"><img class="sq" src="img/logos/readmission.png" width="320" height="347" alt="Réadmissions de patients diabétiques"></a></li>
+    </ul>
+
     <!-- SILLAGE -->
     <article class="feature" aria-labelledby="h-sillage">
       <figure class="shot">
@@ -186,7 +213,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       </figure>
       <div>
         <span class="tag" data-rough="tag"><span class="fr">MARITIME · EU MRV</span><span class="en">SHIPPING · EU MRV</span></span>
-        <h3 id="h-sillage">SILLAGE</h3>
+        <h3 id="h-sillage"><img class="plogo" src="img/logos/sillage.svg" width="1296" height="422" alt="SILLAGE"></h3>
         <p class="q">
           <span class="fr">Que disent les déclarations d'émissions européennes de la flotte de porte-conteneurs CMA CGM ?</span>
           <span class="en">What do EU emissions reports reveal about the CMA CGM container fleet?</span>
@@ -210,7 +237,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       </figure>
       <div>
         <span class="tag" data-rough="tag"><span class="fr">AÉRIEN · LFMN</span><span class="en">AVIATION · LFMN</span></span>
-        <h3 id="h-maintain">MAINTAIN</h3>
+        <h3 id="h-maintain"><img class="plogo" src="img/logos/maintain.png" width="1354" height="350" alt="MAINTAIN"></h3>
         <p class="q">
           <span class="fr">Combien de carburant coûtent les paliers imposés pendant la descente vers Nice Côte d'Azur ?</span>
           <span class="en">How much fuel do level-offs cost during the descent into Nice Côte d'Azur?</span>
@@ -230,7 +257,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       <article aria-labelledby="h-mitoyen">
         <figure class="shot"><a data-rough="frame" href="https://github.com/valrqr/mitoyen"><img src="img/mitoyen-plan-travaux.webp" width="900" height="1012" loading="lazy" alt="Plan de travaux généré par Mitoyen : projection du fonds de travaux sur 10 ans, cotisation lissée et montants à appeler par année"></a></figure>
         <span class="tag" data-rough="tag"><span class="fr">COPROPRIÉTÉ</span><span class="en">CONDOMINIUM</span></span>
-        <h3 id="h-mitoyen">Mitoyen</h3>
+        <h3 id="h-mitoyen"><img class="plogo" src="img/logos/mitoyen.svg" width="456" height="544" alt="Mitoyen"></h3>
         <p><span class="fr">Un assistant open source pour les syndics bénévoles : appels de fonds au centime, plan de travaux sur 10 ans, rapprochement bancaire et relances des impayés. L'agent prépare, le syndic valide et signe.</span><span class="en">An open-source assistant for volunteer condominium managers: service-charge calls to the cent, a 10-year works plan, bank reconciliation and arrears reminders. The agent prepares, the manager approves and signs.</span></p>
         <p class="stack"><strong>Python, FastAPI, n8n, Docker</strong></p>
         <div class="links"><a href="https://github.com/valrqr/mitoyen"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
@@ -240,13 +267,13 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
         <figure class="shot"><a data-rough="frame" href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><img src="img/indicateurs-saisie.webp" width="592" height="419" loading="lazy" alt="Formulaire de saisie journalière d'Indicateurs.xlsm : inspections, SGS, convoyages, FOD, tractages, facturations"></a></figure>
         <span class="tag" data-rough="tag">AIRSIDE · EXCEL</span>
         <h3 id="h-indic">Indicateurs.xlsm</h3>
-        <p><span class="fr">L'outil que j'ai conçu aux Aéroports de la Côte d'Azur pour l'équipe des opérations piste : saisie quotidienne contrôlée, puis reporting automatique mensuel, saisonnier IATA et annuel. 25 formulaires, environ 10 600 lignes de VBA.</span><span class="en">The tool I built at Aéroports de la Côte d'Azur for the airside operations team: validated daily data entry, then automated monthly, IATA-season and annual reporting. 25 forms, about 10,600 lines of VBA.</span></p>
+        <p><span class="fr">L'outil que j'ai conçu aux Aéroports de la Côte d'Azur pour l'équipe des opérations piste : saisie quotidienne contrôlée, puis reporting automatique mensuel, saisonnier IATA et annuel. 25 formulaires, environ 10 600 lignes de VBA. Son successeur, <a href="#h-tarmac">TARMAC</a>, est en construction.</span><span class="en">The tool I built at Aéroports de la Côte d'Azur for the airside operations team: validated daily data entry, then automated monthly, IATA-season and annual reporting. 25 forms, about 10,600 lines of VBA. Its successor, <a href="#h-tarmac">TARMAC</a>, is under construction.</span></p>
         <p class="stack"><strong>Excel, VBA, PowerPoint</strong></p>
         <div class="links"><a href="https://github.com/valrqr/data-portfolio/tree/main/Excel_%26_VBA%20-%20Portfolio%20pro/Indicateurs"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
       </article>
 
       <article aria-labelledby="h-diab">
-        <div class="textonly" aria-hidden="true" data-rough="frame"><div><span>25 %</span><small class="fr">de réadmission dans le groupe à risque, contre 11 % en moyenne</small><small class="en">readmission rate in the high-risk group, versus 11% on average</small></div></div>
+        <div class="textonly" aria-hidden="true" data-rough="frame"><img class="tlogo" src="img/logos/readmission.png" width="320" height="347" alt=""><div><span>25 %</span><small class="fr">de réadmission dans le groupe à risque, contre 11 % en moyenne</small><small class="en">readmission rate in the high-risk group, versus 11% on average</small></div></div>
         <span class="tag" data-rough="tag"><span class="fr">SANTÉ · FORMATION</span><span class="en">HEALTHCARE · TRAINING</span></span>
         <h3 id="h-diab"><span class="fr">Réadmissions de patients diabétiques</span><span class="en">Diabetic patient readmissions</span></h3>
         <p><span class="fr">Projet de fin de formation en binôme : pipeline ELT sur environ 100 000 hospitalisations, segmentation et classification (XGBoost), puis un tableau de bord Power BI pour un public non technique.</span><span class="en">Final training project, in pairs: an ELT pipeline over about 100,000 hospital stays, segmentation and classification (XGBoost), then a Power BI dashboard for a non-technical audience.</span></p>
@@ -254,6 +281,18 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
         <div class="links"><a href="https://github.com/valrqr/data-portfolio/tree/main/Data%20-%20Portfolio%20formation/Projet%20Fin%20de%20Formation"><span class="fr">Voir le projet</span><span class="en">See the project</span></a></div>
       </article>
     </div>
+
+    <!-- TARMAC (en construction) -->
+    <article class="soon" aria-labelledby="h-tarmac">
+      <img class="slogo" src="img/logos/tarmac.svg" width="1199" height="319" alt="" loading="lazy">
+      <div>
+        <span class="tag" data-rough="tag"><span class="fr">EN CONSTRUCTION · AIRSIDE</span><span class="en">IN PROGRESS · AIRSIDE</span></span>
+        <h3 id="h-tarmac"><span class="vh">TARMAC : </span><span class="fr">Et si je réécrivais Indicateurs.xlsm aujourd'hui ?</span><span class="en">What if I rebuilt Indicateurs.xlsm today?</span></h3>
+        <p><span class="fr">Le successeur de mon outil airside : chaque événement côté piste est saisi au moment où il se produit, sur tablette ou téléphone, puis les indicateurs journaliers, mensuels, saisonniers IATA et annuels sont calculés automatiquement jusqu'au tableau de bord Power BI. Grille d'indicateurs générique, données 100 % synthétiques.</span><span class="en">The successor to my airside tool: every airside event is logged as it happens, on a tablet or phone, then daily, monthly, IATA-season and annual indicators are computed automatically, all the way to a Power BI dashboard. Generic indicator framework, 100% synthetic data.</span></p>
+        <p class="stack"><strong>Python, Streamlit, SQLite, BigQuery, dbt, Power BI</strong></p>
+        <p class="note"><span class="fr">Publication prévue début décembre 2026.</span><span class="en">Release planned for early December 2026.</span></p>
+      </div>
+    </article>
   </div>
 </section>
 
