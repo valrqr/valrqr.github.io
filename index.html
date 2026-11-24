@@ -116,11 +116,12 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 /* Logos dessinés à la main */
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .logos-intro{max-width:60ch;margin:-18px 0 26px;font-size:1.02rem}
-.logos{display:flex;flex-wrap:wrap;align-items:center;gap:26px 46px;margin:0 0 92px;padding:0;list-style:none}
+.logos{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 20px;margin:0 0 92px;padding:0;list-style:none}
 .logos a{display:block;transition:transform .18s ease}
 .logos a:hover,.logos a:focus-visible{transform:rotate(-2deg) scale(1.05)}
-.logos img{height:62px;width:auto}
-.logos img.sq{height:84px}
+.logos img{height:50px;width:auto}
+.logos img.sq{height:72px}
+.logos img.wide{height:34px}
 .feature h3 .plogo{height:clamp(56px,7vw,78px);width:auto}
 .more h3 .plogo{height:84px;width:auto}
 .more .textonly{position:relative}
@@ -128,8 +129,8 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 .soon{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:center;margin-top:104px;padding:46px 44px;background:var(--cream)}
 .soon .slogo{width:100%;max-width:520px}
 .soon h3{font-size:clamp(1.5rem,2.6vw,1.9rem);margin:18px 0 10px}
-.soon.small{grid-template-columns:minmax(0,3fr) minmax(0,8fr);margin-top:36px;padding:34px 40px;background:#fff}
-.soon.small .slogo{max-width:230px;margin:0 auto}
+.soon.small{grid-template-columns:minmax(0,5fr) minmax(0,7fr);margin-top:36px;padding:34px 40px;background:#fff}
+.soon.small .slogo{max-width:420px}
 .soon.small:not(:has(.slogo)){grid-template-columns:1fr}
 
 @media (max-width:900px){
@@ -205,7 +206,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
       <li><a href="#h-maintain"><img src="img/logos/maintain.png" width="1354" height="350" alt="MAINTAIN"></a></li>
       <li><a href="#h-mitoyen"><img class="sq" src="img/logos/mitoyen-icone.svg" width="432" height="408" alt="Mitoyen"></a></li>
       <li><a href="#h-tarmac"><img src="img/logos/tarmac.svg" width="1184" height="318" alt="TARMAC"></a></li>
-      <li><a href="#h-goaround"><img src="img/logos/goaround.png" height="62" alt="Go Around" onerror="this.closest('li').remove()"></a></li>
+      <li><a href="#h-goaround"><img class="wide" src="img/logos/goaround.svg" width="3736" height="583" alt="Go Around"></a></li>
       <li><a href="#h-diab"><img class="sq" src="img/logos/readmission.png" width="320" height="347" alt="Réadmissions de patients diabétiques"></a></li>
     </ul>
 
@@ -300,7 +301,7 @@ footer .wrap.small{display:block;font-size:.82rem;color:var(--muted);padding-top
 
     <!-- Go Around (teasing) -->
     <article class="soon small" data-rough="box" aria-labelledby="h-goaround">
-      <img class="slogo" src="img/logos/goaround.png" alt="" loading="lazy" onerror="this.remove()">
+      <img class="slogo" src="img/logos/goaround.svg" width="3736" height="583" alt="" loading="lazy">
       <div>
         <span class="tag" data-rough="tag"><span class="fr">BIENTÔT · RUNNING</span><span class="en">COMING SOON · RUNNING</span></span>
         <h3 id="h-goaround"><span class="vh">Go Around : </span><span class="fr">Un coach running piloté par mes propres données</span><span class="en">A running coach driven by my own data</span></h3>
